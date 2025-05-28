@@ -1,0 +1,59 @@
+.sec3 form{ 
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    
+}
+.formbox{
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    background-color: #FDFDFD;
+}
+
+.inputbox{
+    width: 31%;
+    display: flex;
+    flex-direction: column;
+    gap: 2;
+    margin: 5px;
+    padding: 5px;
+    /* border: 0.5px solid rgb(121, 121, 121);
+    border-radius: 5px; */
+    background-color:#FDFDFD;
+}
+.Addressbox{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.inputbox input , textarea , select {
+    all:unset;
+    appearance: menulist;
+    padding: 5px;
+    margin: 8px;
+    height: 30px;
+    min-width: fit-content;
+    border:0.2px solid #E2E2E2;
+    border-radius: 5px;
+    background-color: #FAFAFA;
+    font-family: '  Times New Roman', Times, serif;
+}
+.form_button{
+    display: flex;
+    gap: 20px; 
+    margin-top: 10px; 
+}
+.form_button button{
+    font-weight: 500        ;
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px; 
+}
+.form_button button:hover{
+    scale: 1.05  ;
+}

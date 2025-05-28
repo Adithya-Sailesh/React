@@ -1,0 +1,10 @@
+.Buttondesign{
+    
+    color: white;
+    background-color: #03AEEE;
+
+}
+
+.Buttondesign:hover{
+    scale: 1.05;
+}
