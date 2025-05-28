@@ -1,0 +1,13 @@
+    .list-block{
+        font-size: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        list-style-type: none;
+        padding: 15px 10px;
+        padding-right: 4%;
+        height: 40px;
+        border-radius: 5px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    }

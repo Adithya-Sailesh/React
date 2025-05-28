@@ -18,7 +18,7 @@ main{
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 } */
 
-aside nav{
+/* aside nav{
     display: flex;
     flex-direction: column;
     margin-top: 40px;
@@ -35,7 +35,7 @@ aside nav li{
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     background-color: #009FED;
     border: 2px solid transparent;
-}
+} */
 
 
 li:hover{
@@ -43,25 +43,23 @@ li:hover{
 }
 .right-side{
     width: calc(100% - 300px);
-    
+    background-color:#FAFAFA;
 }
 .sec1{
     height: 70px;
     background-color: white;
 }
-.sec2{
-    /* font-size: 30px;
-    border-radius: 10px;
-    font-family:'Times New Roman', Times, serif;
-    font-weight: 500; */
+.sec2{  
     margin: 10px ; 
     padding: 18px 25px 18px;
     background-color: #FDFDFD;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 .sec3{
-    background-color: #FDFDFD;
+    /* background-color: #FDFDFD; */
+
+    /* background-color: red; */
     margin: 10px;
-    padding: 20px;
+    /* padding: 20px; */
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }

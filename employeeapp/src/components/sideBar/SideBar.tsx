@@ -4,16 +4,16 @@ import "./SideBar.css"
 const SideBar=()=>{
     const navigate=useNavigate()
     return(
-            <aside >
-                <header > <img style={{padding: "20px"}}src="./src/assets/kv-logo.png" alt="" width="300px" /> </header>
+            <aside className="sidebar-nav">
+                <header > <img style={{padding: "20px",backgroundColor:"#F9FAFE"}}src="/assets/kv-logo.png" alt="" width="300px" /> </header>
                 <nav>
                    <ul>
-                        <li > <img src="./src/assets/icon.svg" style={{scale:1.5,borderRadius:"50%",backgroundColor:"white",marginRight:"5px"}}/> Employee List</li>
+                        <li > <img src="/assets/icon.svg" style={{scale:1.5,borderRadius:"50%",backgroundColor:"white",marginRight:"5px"}}/> Employee List</li>
                    </ul>
                 </nav>    
-                <button onClick={()=>{
+                <button className="logout-button" onClick={()=>{
                     localStorage.setItem("isLoggedIn","false") 
-                    navigate("/")} }>Logout</button>
+                    navigate("/")} }>Logout</button>    
         </aside>
 
     )

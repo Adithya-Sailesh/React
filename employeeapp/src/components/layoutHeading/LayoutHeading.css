@@ -4,3 +4,9 @@ h2{
     font-family:'Times New Roman', Times, serif;
     font-weight: 500;
 }
+.sec2{
+    margin: 10px ; 
+    padding: 18px 25px 18px;
+    background-color: #FDFDFD;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}

@@ -1,11 +1,13 @@
 import Button from "../button/Button"
+import LayoutHeading from "../layoutHeading/LayoutHeading"
 import SelectComponent from "../selectComponent/SelectComponent"
 import  "./createFormSection.css"
 
 
-const CreateFormSection=()=>{
+const CreateFormSection=({editEmpId}:{editEmpId:boolean})=>{
     return(
         <>
+        <LayoutHeading head={editEmpId? "Edit Employee":"Create Employee"}></LayoutHeading>
          <form>
                         <div className="formbox">
                             <div className="inputbox">
@@ -36,8 +38,13 @@ const CreateFormSection=()=>{
                                 <input type="text" name="" id="" placeholder="Address Line 1" />
                                 <input type="text" name="" id="" placeholder="Address Line 2" />
                             </div>
+                            { editEmpId ? (<div className="inputbox">
+                                <label>EmployeeId</label>
+                                <input type="text" name="" id="" placeholder="EmpId" />
+                            </div>):("")
+                            }
                         </div>
-                        <div style={{marginTop: "10px"}}>
+                        <div style={{margin:"20px"}}>
                             <div className="form_button">
                                 <Button type="submit" label="Submit" ></Button>
                                 <Button type="reset" label="Cancel" ></Button>
