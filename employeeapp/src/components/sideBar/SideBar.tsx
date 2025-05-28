@@ -3,12 +3,19 @@ import "./SideBar.css"
 
 const SideBar=()=>{
     const navigate=useNavigate()
+    const handleEmlpoyeeListClick=()=>{
+            navigate("/employee/view")
+    }
+    const handleCreateEmlpoyeeClick=()=>{
+        navigate("/employee")
+    }
     return(
             <aside className="sidebar-nav">
                 <header > <img style={{padding: "20px",backgroundColor:"#F9FAFE"}}src="/assets/kv-logo.png" alt="" width="300px" /> </header>
                 <nav>
                    <ul>
-                        <li > <img src="/assets/icon.svg" style={{scale:1.5,borderRadius:"50%",backgroundColor:"white",marginRight:"5px"}}/> Employee List</li>
+                        <li onClick={handleEmlpoyeeListClick} > <img src="/assets/icon.svg"/> Employee List</li>
+                        <li onClick={handleCreateEmlpoyeeClick} > <img src="/assets/icon.svg" /> Create Employee</li>
                    </ul>
                 </nav>    
                 <button className="logout-button" onClick={()=>{
