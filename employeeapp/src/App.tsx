@@ -24,10 +24,10 @@ function App() {
 
     children:[
       // {index:true,element}
-      {path:"" ,element:<CreateFormSection editEmpId={false}></CreateFormSection>},
+      {path:"",element:<EmployeeList></EmployeeList>},
+      {path:"create" ,element:<CreateFormSection editEmpId={false}></CreateFormSection>},
+      {path:"edit/:id",element:<CreateFormSection editEmpId={true}/>},
       {path:":id",element:<Details></Details>},
-      {path:"edit",element:<CreateFormSection editEmpId={true}/>},
-      {path:"view",element:<EmployeeList></EmployeeList>}
     ]
   },
   

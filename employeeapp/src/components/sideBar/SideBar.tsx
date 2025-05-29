@@ -4,10 +4,10 @@ import "./SideBar.css"
 const SideBar=()=>{
     const navigate=useNavigate()
     const handleEmlpoyeeListClick=()=>{
-            navigate("/employee/view")
+            navigate("/employee")
     }
     const handleCreateEmlpoyeeClick=()=>{
-        navigate("/employee")
+        navigate("/employee/create")
     }
     return(
             <aside className="sidebar-nav">

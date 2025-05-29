@@ -6,7 +6,7 @@ import { FaCirclePlus } from "react-icons/fa6";
 const LayoutHeading=({head,editEmpId}:{head:string,editEmpId:boolean})=>{
     const navigate=useNavigate()
     const handleCreateEmlpoyeeClick=()=>{
-        navigate("/employee")
+        navigate("/employee/create")
     }
     return(
         <>

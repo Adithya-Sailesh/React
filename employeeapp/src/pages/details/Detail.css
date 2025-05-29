@@ -18,8 +18,14 @@
     margin-bottom: 20px;
     border-bottom: 2px solid rgba(155, 155, 155, 0.623);
 }
+.mainbox h3{
+    font-size: 16px;
+    color: #8B8D9D;
+}
 .mainbox h5{
     font-weight: 200;
+    color: #434552  ;
+    font-size: 16px;
 }
 .box2{
     display: flex;
@@ -29,5 +35,18 @@
 .individual{
     width: 40%;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     padding-bottom: 2rem;
+}
+.indstatus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.indstatus h5{
+    border-radius: 6px;
+    padding: 5px;
 }
