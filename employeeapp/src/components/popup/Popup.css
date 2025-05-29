@@ -1,7 +1,7 @@
 .popupoverlay{
      position: fixed;
-        top: 30%;
-        left: 50%;
+    top: 30%;
+    left: 50%;
     height: 400px;
     width: 300px;
     z-index: 1000;
@@ -10,14 +10,17 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 .popuptab h1{
     color: black;
 }
-.popuptab{
+.popuptab{      
     height: 100%;
     width: 100%;
-    background-color: white;
+    
+    border-radius: 10px;
+    background-color: #FDFDFD;
     display: flex;
     flex-direction: column;
 }
@@ -27,15 +30,19 @@
     background-color: #EAF9FF;
     display: flex;
     flex-direction: column;
+    padding: 10px;
     justify-content: center;
 }
 .msgsec2{
     height:60% ;
     display: flex;
     flex-direction: row;
-
+    justify-content: space-around;
+    align-items: center;
 }
 .msgsec2 button{
-    width:30%
-    
+    width:40%;
+    height: 30%;
+    border-radius: 5px;
+    background-color: #009FED;
 }

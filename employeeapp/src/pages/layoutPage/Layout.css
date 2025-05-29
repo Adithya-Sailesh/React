@@ -38,9 +38,9 @@ aside nav li{
 } */
 
 
-li:hover{
+/* li:hover{
     border: 2px solid grey;
-}
+} */
 .right-side{
     width: calc(100% - 300px);
     background-color:#FAFAFA;

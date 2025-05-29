@@ -184,9 +184,9 @@ button:disabled {
   cursor: not-allowed;
 }
 
-button:hover {
+/* button:hover {
   background-color: #0096e0;
-}
+} */
 .login-button:hover {
   background-color: #0296ce;
 }

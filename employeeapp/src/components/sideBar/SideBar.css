@@ -54,3 +54,6 @@
   border-radius: 5px; 
   padding: 5px;
 }
+.logout-button button:hover{
+    background-color: #238db4;
+}

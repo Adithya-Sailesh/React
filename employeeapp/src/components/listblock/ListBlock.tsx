@@ -9,6 +9,7 @@ const ListBlock=({data}:{data:any})=>{
     const [showPopup,setShowPopup]=useState(false)
     const handleDelete=()=>{
         setShowPopup(true)
+        
     }
     const handleEdit=(id:string)=>{
         console.log("from List Block")
@@ -48,7 +49,7 @@ const ListBlock=({data}:{data:any})=>{
                 handleEdit(data.employeeId)
                 e.stopPropagation()
                 }} /></li>
-            {showPopup && <Popup msg="Are u Sure?" onConfirm={confirmDelete} onCancel={cancelDelete}></Popup>}
+            {showPopup && <Popup msg="Are u Sure?" msg2="U are going to delete the field" onConfirm={confirmDelete } onCancel={cancelDelete}></Popup>}
      </ul>
     </div>
     )
