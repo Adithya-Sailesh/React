@@ -30,7 +30,7 @@ const CreateFormSection=({editEmpId}:{editEmpId:number})=>{
 
 
 useEffect(() => {
-        if (user) {
+        if (user && empid) {
             setValues({
             employeeName: user.employeeName,
             employeeAge: user.employeeAge || "",
@@ -47,13 +47,36 @@ useEffect(() => {
             pincode:user.pincode || "",
             });
         }
-}, [user]);
+        else {
+    
+    setValues({
+      employeeName: "",
+      employeeAge: "",
+      employeePassword: "",
+      employeeId: "",
+      joiningDate: "",
+      department: "",
+      Role: "",
+      Status: "",
+      Experience: "",
+      line1: "",
+      line2: "",
+      houseno: "",
+      pincode: ""
+    });
+  }
+},[empid,user]);
+
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+  console.log("Form submitted", values);
+};
 
 
     return(
         <>
         <LayoutHeading  head={editEmpId ? `Edit Employee: ${user?.employeeName}`:"Create Employee" } editEmpId={editEmpId}></LayoutHeading>
-         <form>
+         <form onSubmit={handleSubmit}>
                         <div className="formbox">
                             <div className="inputbox">
                                 <label>Employee Name</label>
