@@ -1,13 +1,18 @@
+import { useParams } from "react-router-dom"
 import Button from "../button/Button"
 import LayoutHeading from "../layoutHeading/LayoutHeading"
 import SelectComponent from "../selectComponent/SelectComponent"
 import  "./createFormSection.css"
+import EmployeeDB from "../../data/EmployeeDB"
 
 
-const CreateFormSection=({editEmpId}:{editEmpId:boolean})=>{
+const CreateFormSection=({editEmpId}:{editEmpId:number})=>{
+    const empid=useParams()
+    const employees=EmployeeDB
+    const user=employees.find((e)=>e.employeeId==empid.id)
     return(
         <>
-        <LayoutHeading  head={editEmpId? "Edit Employee":"Create Employee" } editEmpId={editEmpId}></LayoutHeading>
+        <LayoutHeading  head={editEmpId ? `Edit Employee: ${user?.employeeName}`:"Create Employee" } editEmpId={editEmpId}></LayoutHeading>
          <form>
                         <div className="formbox">
                             <div className="inputbox">

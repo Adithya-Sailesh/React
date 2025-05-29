@@ -14,7 +14,7 @@ const Details=()=>{
     }
     return(
         <div className="fullsec">           
-                    <LayoutHeading head="Employee Detail" editEmpId={false}></LayoutHeading>
+                    <LayoutHeading head="Employee Detail" editEmpId={2}></LayoutHeading>
                     <div className="mainbox">
                         <div className="box1">
                             <div className="individual">

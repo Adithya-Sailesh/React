@@ -15,7 +15,7 @@ const EmployeeList = () => {
 
   return (
     <>
-    <LayoutHeading head={"Employee List"} editEmpId={true}></LayoutHeading>
+    <LayoutHeading head={"Employee List"} editEmpId={1}></LayoutHeading>
     <div className="EmployeeBox">
         <ul className="employeeHeader">
           <li>Employee Name</li>
