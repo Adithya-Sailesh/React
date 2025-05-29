@@ -16,9 +16,6 @@ const Layout =()=>{
             <SideBar></SideBar>
             <div className="right-side">
                 <section className="sec1"> </section>
-                {/* <section className="sec2">
-                    <LayoutHeading head="Create Employee"></LayoutHeading>
-                </section> */}
                 <section className="sec3">
                     <Outlet></Outlet>
                 </section>

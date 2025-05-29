@@ -18,13 +18,21 @@
     font-size: 25px;
     font-weight: 500;
 }
+.employeeHeader li{
+    width: 14%;
+    display: flex;
+    justify-content: center;
+}
 
 
 
 .list-tile{
     display: flex;
     flex-direction: column;
+    /* flex-wrap: nowrap; */
+    height: 600px;
+    overflow-y: auto;
    margin-top: 15px;
    gap:10px;
-
+    
 }

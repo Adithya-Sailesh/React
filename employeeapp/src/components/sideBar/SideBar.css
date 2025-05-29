@@ -26,7 +26,7 @@
     border-bottom-left-radius: 20px;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     background-color: #009FED;
-    border: 2px solid transparent;
+        
 }
 
 
@@ -39,6 +39,9 @@
 .sidebar-nav nav li:hover{
     background-color: #03AEEE;
 }
+
+
+
 .logout-button {
   margin-top: auto; 
   align-self: center;

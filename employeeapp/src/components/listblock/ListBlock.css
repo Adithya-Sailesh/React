@@ -1,4 +1,4 @@
-    .list-block{
+.list-block{
         font-size: 20px;
         display: flex;
         flex-direction: row;
@@ -7,7 +7,23 @@
         list-style-type: none;
         padding: 15px 10px;
         padding-right: 4%;
-        height: 40px;
+        height: 45px;
         border-radius: 5px;
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-    }
+}
+.tile :hover{
+    background-color: #FDFDFD;
+}
+.statusBg{
+    background-color: #D3F4BE;
+    border-radius: 1rem;
+}
+.list-block li{
+   list-style-type: none;
+    width:14%;
+    display: flex;
+    justify-content: center;
+    gap:1em;
+   border: 0;
+}
+

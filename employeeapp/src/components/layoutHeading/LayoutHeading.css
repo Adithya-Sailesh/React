@@ -2,11 +2,40 @@ h2{
     font-size: 30px;
     border-radius: 10px;
     font-family:'Times New Roman', Times, serif;
-    font-weight: 500;
+    font-weight: 400;
 }
 .sec2{
     margin: 10px ; 
     padding: 18px 25px 18px;
     background-color: #FDFDFD;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.createEmp{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #EAF9FF;
+    width: 15em;
+    border-radius: 2rem;
+}
+
+.createEmp:hover{
+    background-color:#caeffe ;
+}
+.filtersec{
+    margin-right: 5px;
+}
+.filtersec select{
+    background-color: #EAF9FF;
+    border-radius: 1em;
+    width: 7em;
+    
+}
+.rightside{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }

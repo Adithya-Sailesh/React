@@ -1,15 +1,35 @@
 import "./ListBlock.css"
-const ListBlock=()=>{
+import { CiEdit } from "react-icons/ci";
+import { MdOutlineEdit } from "react-icons/md";
+import { FaTrash } from "react-icons/fa";   
+import { useNavigate } from "react-router-dom";
+const ListBlock=({data,onClick}:{data:any,onClick:()=>void})=>{
+    const navigate=useNavigate()
+    const handleDelete=()=>{
+        alert("are you sure")
+    }
+    const handleEdit=()=>{
+        navigate('/employee/edit')
+
+    }
+    const colortab={
+        "ACTIVE":"#D3F4BE",
+        "INACTIVE":"#FFBFBF",
+        "PROBATION":"#F5ECB8"
+    }
+
     return(
-    <ul className="list-block">
-            <li>Vishal M</li>
-            <li>MDL21CS006</li>
-            <li>16/01/2004</li>
-            <li>DEVELOPER</li>
-            <li>ACTIVE</li>
-            <li>2</li>
-            <li>Action</li>
+    <div className="tile">
+        <ul className="list-block">
+            <li>{data.employeeName}</li>
+            <li>{data.employeeId}</li>
+            <li>{data.joiningDate}</li>
+            <li>{data.Role}</li>
+            <li  className="statusBg"  style={{backgroundColor:colortab[data.Status.toUpperCase()]}}>{data.Status}</li>
+            <li>{data.Experience}</li>
+            <li><FaTrash onClick={handleDelete} color="#FA4242"/><MdOutlineEdit onClick={handleEdit} /></li>
      </ul>
+    </div>
     )
 }
 
