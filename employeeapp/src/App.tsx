@@ -26,7 +26,7 @@ function App() {
       // {index:true,element}
       {path:"",element:<EmployeeList></EmployeeList>},
       {path:"create" ,element:<CreateFormSection editEmpId={0}></CreateFormSection>},
-      {path:"edit/:id",element:<CreateFormSection editEmpId={1}/>},
+      {path:"edit/:id",element:<CreateFormSection editEmpId={4}/>},
       {path:":id",element:<Details></Details>},
     ]
   },

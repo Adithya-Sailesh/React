@@ -14,18 +14,19 @@ const CreateFormSection=({editEmpId}:{editEmpId:number})=>{
     
     const [values,setValues]=useState({
       employeeName: "",
-      employeeAge:"",
-      employeePassword:"",
-      employeeId: "",
-      joiningDate: "",
-      department:"",
-      Role: "",
-      Status: "",
-      Experience: "",
-      line1:"",
-      line2:"",
-      houseno:"",
-      pincode:""
+        employeeAge:"",
+        email:"",
+        employeePassword:"",
+        employeeId: "",
+        joiningDate: "",
+        department:"",
+        Role: "",
+        Status: "",
+        Experience: "",
+        line1:"",
+        line2:"",
+        houseno:"",
+        pincode:""
     })
 
 
@@ -33,6 +34,7 @@ useEffect(() => {
         if (user && empid) {
             setValues({
             employeeName: user.employeeName,
+            email:user.employeeAge || "",
             employeeAge: user.employeeAge || "",
             employeePassword: "",
             employeeId: user.employeeId,
@@ -52,6 +54,7 @@ useEffect(() => {
     setValues({
       employeeName: "",
       employeeAge: "",
+      email:"",
       employeePassword: "",
       employeeId: "",
       joiningDate: "",
@@ -87,6 +90,11 @@ const handleSubmit = (e: React.FormEvent) => {
                                 <input type="text" name="" id="employeeId" placeholder="EmpId"  value={values.employeeId} onChange={(e)=>setValues({...values, employeeId: e.target.value})}/>
                             </div>):("")
                             }
+                            <div className="inputbox">
+                                <label>E    mail</label>
+                                <input type="email" name="" id="" placeholder="Employee email" value={values.email} onChange={(e)=>setValues({...values, email: e.target.value})} required/>
+                            </div>
+
                             <div className="inputbox">
                                 <label>Employee Age</label>
                                 <input type="number" name="" id="" placeholder="Employee Age" value={values.employeeAge} onChange={(e)=>setValues({...values, employeeAge: e.target.value})} required/>

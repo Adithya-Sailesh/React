@@ -31,8 +31,9 @@ const ListBlock=({data}:{data:any})=>{
     }
 
     return(
-    <div className="tile">
-        <ul className="list-block">
+    <>
+            <div className="tilee">
+             <ul className="list-block">
             <li>{data.employeeName}</li>
             <li>{data.employeeId}</li>
             <li>{data.joiningDate}</li>
@@ -52,6 +53,8 @@ const ListBlock=({data}:{data:any})=>{
             {showPopup && <Popup msg="Are u Sure?" msg2="U are going to delete the field" onConfirm={confirmDelete } onCancel={cancelDelete}></Popup>}
      </ul>
     </div>
+    </>
+    
     )
 }
 

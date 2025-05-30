@@ -1,7 +1,9 @@
 import './Popup.css'
 const Popup=({msg,msg2,onConfirm,onCancel}:{msg:string,msg2:string,onConfirm:()=>void,onCancel:()=>void})=>{
     return(
-        <div className='popupoverlay'>
+        <div className='modal'>
+
+            <div className='popupoverlay'>
             <div className="popuptab">
                 <div className='msgsec1'>
                        <h1> {msg}</h1>
@@ -18,6 +20,7 @@ const Popup=({msg,msg2,onConfirm,onCancel}:{msg:string,msg2:string,onConfirm:()=
                     }}>Cancel</button>
                 </div>
             </div>
+        </div>
         </div>
     )
     

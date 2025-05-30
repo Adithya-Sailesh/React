@@ -1,16 +1,26 @@
+
+.modal{
+    height: 100vh;
+    width: 100vw;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.4);
+}
 .popupoverlay{
-     position: fixed;
-    top: 30%;
-    left: 50%;
     height: 400px;
     width: 300px;
-    z-index: 1000;
     background-color: #FDFDFD;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     
+    border-radius: 10px;
 }
 .popuptab h1{
     color: black;
@@ -18,8 +28,6 @@
 .popuptab{      
     height: 100%;
     width: 100%;
-    
-    border-radius: 10px;
     background-color: #FDFDFD;
     display: flex;
     flex-direction: column;
@@ -27,7 +35,7 @@
 .msgsec1{
     height: 40%;
     width: 100%;
-    background-color: #EAF9FF;
+    background-color: #f7f7f7;
     display: flex;
     flex-direction: column;
     padding: 10px;
@@ -45,4 +53,7 @@
     height: 30%;
     border-radius: 5px;
     background-color: #009FED;
+}
+.msgsec2 button:hover{
+    scale: 1.05;
 }

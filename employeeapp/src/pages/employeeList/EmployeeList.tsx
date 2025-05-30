@@ -1,5 +1,5 @@
 
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useSearchParams } from "react-router-dom"
 import LayoutHeading from "../../components/layoutHeading/LayoutHeading"
 import ListBlock from "../../components/listblock/ListBlock"
 import "./EmployeeList.css"
@@ -11,11 +11,22 @@ const EmployeeList = () => {
     console.log("Clicked")
     navigate(`${Id}`)
   }
-
-
+  const[searchParam,setSearchParam]=useSearchParams()
+  const condition=searchParam.get("filter")
+  const emp= condition
+    ? employees.filter(e => e.Status === condition)
+    : employees
+ 
+    
+  
+  
+  
+  
+  
+  
   return (
     <>
-    <LayoutHeading head={"Employee List"} editEmpId={1}></LayoutHeading>
+    <LayoutHeading head={"Employee List "} editEmpId={1}></LayoutHeading>
     <div className="EmployeeBox">
         <ul className="employeeHeader">
           <li>Employee Name</li>
@@ -28,7 +39,7 @@ const EmployeeList = () => {
       </ul>
     </div>
       <div className="list-tile">
-        { employees.map((employee,index)=>(
+        { emp.map((employee,index)=>(
             <div onClick={()=>handleClick(employee.employeeId)}><ListBlock key={index} data={employee} ></ListBlock></div>
               
         ))}
