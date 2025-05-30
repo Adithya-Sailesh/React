@@ -4,9 +4,20 @@ import LayoutHeading from "../../components/layoutHeading/LayoutHeading"
 import ListBlock from "../../components/listblock/ListBlock"
 import "./EmployeeList.css"
 import EmployeeDB from "../../data/EmployeeDB"
+import { useSelector } from "react-redux"
 const EmployeeList = () => {
-    const navigate=useNavigate()
-      const employees=EmployeeDB
+  const navigate=useNavigate()
+  // const employees=EmployeeDB
+  const data=useSelector((state)=>state)
+  console.log(data)
+  const employees= data?.employees ??[{
+      employeeName: "Alice",
+      employeeId: "E001",
+      joiningDate: "2022-01-01",
+      Role: "Developer",
+      Status: "Active",
+      Experience: "2 years",
+    }]
   const handleClick=(Id:string)=>{
     console.log("Clicked")
     navigate(`${Id}`)
@@ -16,14 +27,6 @@ const EmployeeList = () => {
   const emp= condition
     ? employees.filter(e => e.Status === condition)
     : employees
- 
-    
-  
-  
-  
-  
-  
-  
   return (
     <>
     <LayoutHeading head={"Employee List "} editEmpId={1}></LayoutHeading>

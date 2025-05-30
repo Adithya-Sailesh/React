@@ -9,6 +9,8 @@ import NotFound from './pages/notFound/NotFound'
 import Details from './pages/details/Detail'
 import CreateFormSection from './components/createFormSection/createFormSection'
 import EmployeeList from './pages/employeeList/EmployeeList'
+import { Provider } from 'react-redux'
+import Store from './store/store'
 // import Login from './pages/login/Login'
 
 function App() {
@@ -38,8 +40,11 @@ function App() {
 
   return (
    <>
-   <RouterProvider router={router}>
-   </RouterProvider>
+   <Provider  store={Store}>
+        <RouterProvider router={router}>
+      </RouterProvider>
+   </Provider>
+   
    </>
   )
 } 
