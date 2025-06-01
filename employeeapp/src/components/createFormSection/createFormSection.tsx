@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import Button from "../button/Button"
 import LayoutHeading from "../layoutHeading/LayoutHeading"
 import SelectComponent from "../selectComponent/SelectComponent"
@@ -6,12 +6,15 @@ import  "./createFormSection.css"
 import EmployeeDB from "../../data/EmployeeDB"
 import { useEffect, useState } from "react"
 import Store from "../../store/store"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 const CreateFormSection=({editEmpId}:{editEmpId:number})=>{
     const dispatch=useDispatch()
+    const navigate=useNavigate()
     const empid=useParams()
-    const employees=EmployeeDB
+    const data=useSelector((state)=>state)
+    // const employees=EmployeeDB when dummy data
+    const employees=data?.employees
     const user=employees.find((e)=>e.employeeId==empid.id)
     
     const [values,setValues]=useState({
@@ -74,17 +77,17 @@ useEffect(() => {
 
 const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
-//   console.log("Form submitted", values);
   const action={type:'employee/CREATE',payload:values}
   dispatch(action)
   alert("Data Added")
+ navigate("/")
 };
 
 
     return(
         <>
         <LayoutHeading  head={editEmpId ? `Edit Employee: ${user?.employeeName}`:"Create Employee" } editEmpId={editEmpId}></LayoutHeading>
-         <form onSubmit={handleSubmit}>
+         <form onSubmit={handleSubmit} className="mainformbox">
                         <div className="formbox">
                             <div className="inputbox">
                                 <label>Employee Name</label>
@@ -92,8 +95,11 @@ const handleSubmit = (e: React.FormEvent) => {
                             </div>
                             { editEmpId ? (<div className="inputbox">
                                 <label>EmployeeId</label>
-                                <input type="text" name="" id="employeeId" placeholder="EmpId"  value={values.employeeId} onChange={(e)=>setValues({...values, employeeId: e.target.value})}/>
-                            </div>):("")
+                                <input style={{backgroundColor:"grey"}} type="text" name="" id="employeeId" placeholder="EmpId" disabled={true} value={values.employeeId} onChange={(e)=>setValues({...values, employeeId: e.target.value})}/>
+                            </div>):(<div className="inputbox">
+                                <label>EmployeeId</label>
+                                <input type="text" name="" id="employeeId" placeholder="EmpId"   value={values.employeeId} onChange={(e)=>setValues({...values, employeeId: e.target.value})}/>
+                            </div>)
                             }
                             <div className="inputbox">
                                 <label>Email</label>        

@@ -40,7 +40,7 @@ export interface Employee {
   role: Role;
   dateOfJoining: Date;
   experience: number;
-  status: Status;
+  Status: Status;
   departmentId: number | string;
 }
 

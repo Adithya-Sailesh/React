@@ -23,9 +23,9 @@ const EmployeeList = () => {
     navigate(`${Id}`)
   }
   const[searchParam,setSearchParam]=useSearchParams()
-  const condition=searchParam.get("filter")
-  const emp= condition
-    ? employees.filter(e => e.Status === condition)
+  const condition=searchParam.get("filter")?.toUpperCase()
+  const emp= condition?
+     employees.filter((e) => {return e.Status === condition})
     : employees
   return (
     <>

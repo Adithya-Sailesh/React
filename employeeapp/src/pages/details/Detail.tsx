@@ -3,9 +3,13 @@ import { useParams, useSearchParams } from "react-router-dom"
 import LayoutHeading from "../../components/layoutHeading/LayoutHeading";
 import "./Detail.css"
 import EmployeeDB from "../../data/EmployeeDB";
+import { useSelector } from "react-redux";
 const Details=()=>{
     const {id}=useParams();
-    const employees=EmployeeDB
+    const data=useSelector((state)=>state)
+    // const employees=EmployeeDB
+    const employees= data?.employees
+    console.log("emp",employees)
     const user=employees.find((emp)=>emp.employeeId==id)
     const colortab={
         "ACTIVE":"#D3F4BE",
@@ -41,13 +45,17 @@ const Details=()=>{
                         <div className="box2">
                             <div className="individual">
                                 <h3>Address</h3>
-                                <h5>Model Engineering College</h5>
+                                <h5>{user?.houseno ?? 'House No'}</h5>
+                                <h5>{user?.line1 ?? 'line1'}</h5>
+                                <h5>{user?.line2 ?? 'line2'}</h5>
+                                <h5>{user?.pincode ?? 'Pincode'}</h5>
+                                {console.log("user",user)}
                             </div>
                             <div className="individual">
                                 <h3>Employee ID</h3>
                                 <h5>{user?.employeeId}</h5>
                             </div> 
-                        </div>
+                        </div> 
                         
                     </div>
         </div>
