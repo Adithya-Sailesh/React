@@ -6,11 +6,13 @@ import InputField from "../../components/inputField/InputField"
 import { useEffect, useRef, useState } from "react"
 import useMousePostion from "../../hooks/useMousePostion"
 import { Navigate, useNavigate } from "react-router-dom"
+import useShowPassword from "../../hooks/useShowPassword"
 const Login =()=>{ 
     const navigate=useNavigate()
     const mousePositon=useMousePostion();
     const[username,setUsername]=useState('')
     const [password,setPassword]=useState('')
+    const {toggleShowPassword,showPassword}=useShowPassword()
     const usernameRef= useRef<HTMLInputElement>(null)
     const[usernameLength,setUserNamelength]=useState("")
     const isLoggedCheck=()=>{
@@ -42,20 +44,20 @@ const Login =()=>{
     useEffect(()=>{
         usernameRef.current?.focus();
     },[])
-    useEffect(()=>{
-        console.log(username)   
-        if(username.length==0){
-            setUserNamelength("")
-        }else if(username.length<5){
-            setUserNamelength("Name Should Be more than 5 letters")
-        }   
-        // else if(username.length>10){
-        //     setUserNamelength("Name Should be less than 10 letters")
-        // }
-        // else if(username.length<10){ 
-        //     setUserNamelength("Valid")
-        // }
-    },[username])
+    // useEffect(()=>{
+    //     console.log(username)   
+    //     if(username.length==0){
+    //         setUserNamelength("")
+    //     }else if(username.length<5){
+    //         setUserNamelength("Name Should Be more than 5 letters")
+    //     }   
+    //     // else if(username.length>10){
+    //     //     setUserNamelength("Name Should be less than 10 letters")
+    //     // }
+    //     // else if(username.length<10){ 
+    //     //     setUserNamelength("Valid")
+    //     // }
+    // },[username])
     const user={username:"admin",password:"password"}
     return(
         <>
@@ -69,9 +71,10 @@ const Login =()=>{
                                     <img src="./src/assets/kv-logo.png" alt="Circle image" />
                             </div>
                             <form onSubmit={handleLogin}>  
-                                <InputField title="Username" type="text" value={username} onInputChange={updateUsername} ref={usernameRef} endAdd={<button   type="button" onClick={()=>setUsername("")}>Clear</button>}></InputField>
+                                <InputField title="Username" type="text"  value={username} onInputChange={updateUsername} ref={usernameRef} endAdd={<button   type="button" onClick={()=>setUsername("")}>Clear</button>}></InputField>
                                 
-                                <InputField title="Password" type="password" value={password} onInputChange={updatePassword} ></InputField>  
+                                <InputField title="Password" type={showPassword ? "text" :"password"} value={password} onInputChange={updatePassword} ></InputField>  
+                                <h3 style={{float:"right"}}><input type="checkbox" name="" id="" checked={showPassword} onChange={toggleShowPassword}/>     Show Password</h3>
                                 <div>
                                     <Button type="submit" label={"Login in"} ></Button>
                                 </div>
