@@ -4,13 +4,18 @@ import LayoutHeading from "../../components/layoutHeading/LayoutHeading";
 import "./Detail.css"
 import EmployeeDB from "../../data/EmployeeDB";
 import { useSelector } from "react-redux";
+import {  useGetEmployeeQuery } from "../../api-service/employees/employees.api";
 const Details=()=>{
     const {id}=useParams();
-    const data=useSelector((state)=>state)
+    const cond=Number(id)
+    const {data: singleEmployeeData}=useGetEmployeeQuery({id:cond})
+
+    // const data=useSelector((state)=>state)
     // const employees=EmployeeDB
-    const employees= data?.employee.employees
-    console.log("emp",employees)
-    const user=employees.find((emp)=>emp.employeeId==id)
+    // const employees= data?.employee.employees
+    // console.log("emp",employees)
+    // const user=response?.find((emp:any)=>emp.employeeid==id)
+    const user=singleEmployeeData
     const colortab={
         "ACTIVE":"#D3F4BE",
         "INACTIVE":"#FFBFBF",
@@ -23,37 +28,36 @@ const Details=()=>{
                         <div className="box1">
                             <div className="individual">
                                 <h3>Employee Name</h3>
-                                <h5>{user?.employeeName}</h5>
+                                <h5>{user?.name}</h5>
                             </div>
                             <div className="individual">
                                 <h3>Joining Date</h3>
-                                <h5>{user?.joiningDate}</h5>
+                                <h5>{user?.dateOfJoining ? new Date(user.dateOfJoining).toLocaleDateString("en-GB") : "N/A"}</h5>
                             </div>
                             <div className="individual">
                                 <h3>Experience</h3>
-                                <h5>{user?.Experience}</h5>
+                                <h5>{user?.experience}</h5>
                             </div>
                             <div className="individual">
                                 <h3>Role</h3>
-                                <h5>{user?.Role}</h5>
+                                <h5>{user?.role}</h5>
                             </div>
                             <div className="individual indstatus">
                                 <h3>Status</h3>
-                                <h5 style={{backgroundColor:colortab[user.Status.toUpperCase()]}}>{user?.Status}</h5>
+                                <h5 style={{backgroundColor: user ? colortab[user?.status]:"green"}}>{user?.status}</h5>
                             </div>  
                         </div>
                         <div className="box2">
                             <div className="individual">
                                 <h3>Address</h3>
-                                <h5>{user?.houseno ?? 'House No'}</h5>
-                                <h5>{user?.line1 ?? 'line1'}</h5>
-                                <h5>{user?.line2 ?? 'line2'}</h5>
-                                <h5>{user?.pincode ?? 'Pincode'}</h5>
-                                {console.log("user",user)}
+                                <h5>{user?.address.houseNo ?? 'House No'}</h5>
+                                <h5>{user?.address.line1 ?? 'line1'}</h5>
+                                <h5>{user?.address.line2 ?? 'line2'}</h5>
+                                <h5>{user?.address.pincode ?? 'Pincode'}</h5>
                             </div>
                             <div className="individual">
                                 <h3>Employee ID</h3>
-                                <h5>{user?.employeeId}</h5>
+                                <h5>{user?.employeeid}</h5>
                             </div> 
                         </div> 
                         

@@ -5,19 +5,13 @@ import ListBlock from "../../components/listblock/ListBlock"
 import "./EmployeeList.css"
 import EmployeeDB from "../../data/EmployeeDB"
 import { useSelector } from "react-redux"
+import { useDeleteemployeeMutation, useGetEmployeeListQuery } from "../../api-service/employees/employees.api"
 const EmployeeList = () => {
   const navigate=useNavigate()
-  // const employees=EmployeeDB
-  const data=useSelector((state)=>state)
-  console.log("data",data.employee.employees)
-  const employees= data?.employee.employees ??[{
-      employeeName: "Empty",
-      employeeId: "",
-      joiningDate: "",
-      Role: "",
-      Status: "", 
-      Experience: "",
-    }]
+  const {data:getAll}=useGetEmployeeListQuery({})
+  const [deleteEmployee]=useDeleteemployeeMutation
+  const response=getAll
+  console.log("from db",response)
   const handleClick=(Id:string)=>{
     console.log("Clicked")
     navigate(`${Id}`)
@@ -25,8 +19,9 @@ const EmployeeList = () => {
   const[searchParam,setSearchParam]=useSearchParams()
   const condition=searchParam.get("filter")?.toUpperCase()
   const emp= condition?
-     employees.filter((e) => {return e.Status === condition})
-    : employees
+     response.filter((e:any) => {return e.status === condition})
+    :response
+ 
   return (
     <>
     <LayoutHeading head={"Employee List "} editEmpId={1}></LayoutHeading>
@@ -42,9 +37,9 @@ const EmployeeList = () => {
       </ul>
     </div>
       <div className="list-tile">
-        { emp.map((employee,index)=>(
-            <div onClick={()=>handleClick(employee.employeeId)}><ListBlock key={index} data={employee} ></ListBlock></div>
-              
+        { emp?.map((employee,index)=>(
+            <div key={index} onClick={()=>handleClick(employee.id)}><ListBlock key={index} data={employee} ></ListBlock></div>
+           
         ))}
         
       </div>

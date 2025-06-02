@@ -33,7 +33,7 @@ export type Status = (typeof EmployeeStatus)[keyof typeof EmployeeStatus];
 export interface Employee {
   employeeId: string;
   email: string;
-  name: string;
+  name: string; 
   age: number;
   address: Address;
   password: string;

@@ -13,7 +13,7 @@ const ListBlock=({data}:{data:any})=>{
     }
     const handleEdit=(id:string)=>{
         console.log("from List Block")
-        navigate(`/employee/edit/${data.employeeId}`)
+        navigate(`/employee/edit/${data.id}`)
         
     }
     const confirmDelete=()=>{
@@ -34,12 +34,12 @@ const ListBlock=({data}:{data:any})=>{
     <>
             <div className="tilee">
              <ul className="list-block">
-            <li>{data.employeeName}</li>
-            <li>{data.employeeId}</li>
-            <li>{data.joiningDate}</li>
-            <li>{data.Role}</li>
-            <li  className="statusBg"  style={{backgroundColor:colortab[data.Status.toUpperCase()]}}>{data.Status}</li>
-            <li>{data.Experience}</li>
+            <li>{data.name ?? null}</li>
+            <li>{data.employeeid ?? "null"}</li>
+            <li>{data.dateOfJoining ? new Date(data.dateOfJoining).toLocaleDateString("en-GB") : "N/A"}</li>
+            <li>{data.role}</li>
+            <li  className="statusBg"  style={{backgroundColor:colortab[data.status.toUpperCase()]}}>{data.status}</li>
+            <li>{data.experience}</li>
             <li><FaTrash onClick={(e)=>{
                     handleDelete()
                     e.stopPropagation()
@@ -47,7 +47,7 @@ const ListBlock=({data}:{data:any})=>{
                 
                 
                 } color="#FA4242"/><MdOutlineEdit onClick={(e)=>{
-                handleEdit(data.employeeId)
+                handleEdit(data.id)
                 e.stopPropagation()
                 }} /></li>
             {showPopup && <Popup msg="Are u Sure?" msg2="U are going to delete the field" onConfirm={confirmDelete } onCancel={cancelDelete}></Popup>}

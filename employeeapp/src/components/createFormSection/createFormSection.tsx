@@ -8,137 +8,179 @@ import { useEffect, useState } from "react"
 import Store from "../../store/store"
 import { useDispatch, useSelector } from "react-redux"
 import { addEmployee } from "../../store/employee/employeeReducer"
+import { useCreateemployeeMutation, useEditemployeeMutation, useGetEmployeeListQuery } from "../../api-service/employees/employees.api"
 
 const CreateFormSection=({editEmpId}:{editEmpId:number})=>{
-    const dispatch=useDispatch()
+    const [createEmployee]=useCreateemployeeMutation()
+    const [editEmployee]=useEditemployeeMutation()
     const navigate=useNavigate()
     const empid=useParams()
-    const data=useSelector((state)=>state)
-    // const employees=EmployeeDB when dummy data
-    const employees=data?.employee.employees
-    const user=employees?.find((e)=>e.employeeId==empid.id)
-    
+    const cond=Number(empid.id)
+    const {data:getAll}=useGetEmployeeListQuery({})
+    console.log("Employeefrom",getAll)
+    const user=getAll?.find((e)=>e.id==cond)
+    console.log("user",user)
     const [values,setValues]=useState({
-      employeeName: "",
-        employeeAge:"",
+        name: "",
+        age:"",
         email:"",
         employeePassword:"",
         employeeId: "",
         joiningDate: "",
         department:"",
-        Role: "",
-        Status: "",
-        Experience: "",
-        line1:"",
-        line2:"",
-        houseno:"",
-        pincode:""
+        role: "",
+        status: "",
+        experience: "",
+        address:{
+          line1:"",
+          line2:"",
+          houseNo:"",
+          pincode:""
+          } 
     })
 
 
 useEffect(() => {
         if (user && empid) {
+            const formattedDate = user.dateOfJoining?.split("T")[0] || ""; 
+            console.log("date",formattedDate)
             setValues({
-            employeeName: user.employeeName,
+            name: user.name,
+            joiningDate:formattedDate,
             email: user.email || "",    
-            employeeAge: user.employeeAge || "",
+            age: user.age || "",
             employeePassword: "",
-            employeeId: user.employeeId,
-            joiningDate: user.joiningDate,
-            department: user.department || "",
-            Role: user.Role,
-            Status: user.Status,
-            Experience: user.Experience,
-            line1: user.line1 || "",
-            line2: user.line2 || "",
-            houseno: user.houseno || "",
-            pincode:user.pincode || "",
+            employeeId: user.employeeid,
+            // joiningDate: user.joiningDate,
+            department:String(user.department.id|| ""),  
+            role: user.role,
+            status: user.status,
+            experience: user.experience,
+            address:{
+                line1:user?.address.line1||"",
+                line2:user?.address.line2 || "",
+                houseNo:user?.address.houseNo || "",
+                pincode:user?.address.pincode|| ""
+                }
+            
             });
         }
         else {
     
     setValues({
-      employeeName: "",
-      employeeAge: "",
+      name: "",
+      age: "",
       email:"",
       employeePassword: "",
       employeeId: "",
       joiningDate: "",
       department: "",
-      Role: "",
-      Status: "",
-      Experience: "",
-      line1: "",
-      line2: "",
-      houseno: "",
-      pincode: ""
+      role: "",
+      status: "",
+      experience: "",
+       address:{
+          line1:"",
+          line2:"",
+          houseNo:"",
+          pincode:""
+          }
     });
   }
 },[empid,user]);
 
-const handleSubmit = (e: React.FormEvent) => {
+const handleSubmit = async(e: React.FormEvent) => {
   e.preventDefault();
-  const action={type:'employee/CREATE',payload:values}
-//   dispatch(action)
-//   alert("Data Added")
-dispatch(addEmployee(values))
- navigate("/")
-};
+  console.log("pass",values.employeePassword,user.password)
+//   password:values.employeePassword
+const payload = {
+    name: values.name,
+    email: values.email,
+    age: Number(values.age),
+    role: values.role,
+    dept_id: Number(values.department),
+    password:values.employeePassword,
+    employeeId: values.employeeId,
+    dateOfJoining: values.joiningDate,
+    experience: Number(values.experience),
+    status: values.status,
+    address: values.address,
+   
+  };
+
+  
+   try {
+    if (cond) {
+      await editEmployee({ payload ,id: cond}).unwrap();
+      alert("Employee updated successfully");
+    } else {
+      await createEmployee(payload).unwrap();
+      alert("Employee created successfully");
+    }
+    navigate("/");
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Something went wrong");
+  }
+   navigate("/")
+  }
+
+;
     return(
         <>
-        <LayoutHeading  head={editEmpId ? `Edit Employee: ${user?.employeeName}`:"Create Employee" } editEmpId={editEmpId}></LayoutHeading>
+        <LayoutHeading  head={editEmpId ? `Edit Employee: ${user?.name}`:"Create Employee" } editEmpId={editEmpId}></LayoutHeading>
          <form onSubmit={handleSubmit} className="mainformbox">
                         <div className="formbox">
                             <div className="inputbox">
                                 <label>Employee Name</label>
-                                <input type="text" name="" id="employeeName"  value={values.employeeName} onChange={(e)=>setValues({...values, employeeName: e.target.value})} placeholder="Employee Name" required/>
+                                <input type="text" name="" id="name"  value={values.name} onChange={(e)=>setValues({...values, name: e.target.value})} placeholder="Employee Name" required/>
                             </div>
                             { editEmpId ? (<div className="inputbox">
                                 <label>EmployeeId</label>
-                                <input style={{backgroundColor:"grey"}} type="text" name="" id="employeeId" placeholder="EmpId" disabled={true} value={values.employeeId} onChange={(e)=>setValues({...values, employeeId: e.target.value})}/>
+                                <input style={{backgroundColor:"grey"}} type="text" name="" id="employeeId" placeholder={values.employeeId} disabled={true} value={values.employeeId} onChange={(e)=>setValues({...values, employeeId: e.target.value})}/>
                             </div>):(<div className="inputbox">
                                 <label>EmployeeId</label>
                                 <input type="text" name="" id="employeeId" placeholder="EmpId"   value={values.employeeId} onChange={(e)=>setValues({...values, employeeId: e.target.value})}/>
                             </div>)
                             }
                             <div className="inputbox">
-                                <label>Email</label>        
+                                <label>Email</label>            
                                 <input type="email" name="" id="" placeholder="Employee email" value={values.email} onChange={(e)=>setValues({...values, email: e.target.value})} required/>
                             </div>
 
                             <div className="inputbox">
                                 <label>Employee Age</label>
-                                <input type="number" name="" id="" placeholder="Employee Age" value={values.employeeAge} onChange={(e)=>setValues({...values, employeeAge: e.target.value})} required/>
+                                <input type="number" name="" id="" placeholder="Employee Age" value={values.age} onChange={(e)=>setValues({...values, age: e.target.value})} required/>
                             </div>
                             <div className="inputbox">
                                 <label>Employee Password</label>
-                                <input type="password" name="" id="" placeholder="Employee Password" value={values.employeePassword} onChange={(e)=>setValues({...values, employeePassword: e.target.value})} required/>
+                                <input type="password" name="" id=""  placeholder="Employee Password" value={values.employeePassword} onChange={(e)=>setValues({...values, employeePassword: e.target.value})} required/>
                             </div>
+                            
                             <div className="inputbox">
                                 <label>Joining date</label> 
                                 <input type="date" name="" id="" placeholder="Joining date" value={values.joiningDate} onChange={(e)=>setValues({...values, joiningDate: e.target.value})}required/>
                             </div>
                             <div className="inputbox">
-                                <label>Experience</label>
-                                <input type="text" name="" id="" placeholder="Years" value={values.Experience} onChange={(e)=>setValues({...values, Experience: e.target.value})} required/>
+                                <label>experience</label>
+                                <input type="text" name="" id="" placeholder="Years" value={values.experience} onChange={(e)=>setValues({...values, experience: e.target.value})} required/>
                             </div>
                             <div className="inputbox">
-                                <SelectComponent labeltext="Department" title="Choose Department" options={["Dept1","Dept2"] } onChange={(e)=>setValues({...values, department: e.target.value})} ></SelectComponent>
+                                <SelectComponent value={values.department} labeltext="Department" title="Choose Department" options={["1","2","3","4","5","6"] } onChange={(e)=>setValues({...values, department: e.target.value})} ></SelectComponent>
                             </div> 
                             <div className="inputbox">
-                                <SelectComponent labeltext="Role" title="Choose Role" options={["DEV","HR","UI","UX"]} onChange={(e)=>setValues({...values, Role: e.target.value})}></SelectComponent>
-                            </div>
+                                <SelectComponent value={values.role} labeltext="role" title="Choose role" options={["DEV","HR","UI","UX"]} onChange={(e)=>setValues({...values, role: e.target.value})}></SelectComponent>
+                            </div>  
                             <div className="inputbox">
-                                <SelectComponent labeltext="Status" title="Choose Status" options={["ACTIVE","INACTIVE","PROBATION"]} onChange={(e)=>setValues({...values, Status: e.target.value})}></SelectComponent>
+                                <SelectComponent  value={values.status} labeltext="status" title="Choose status" options={["ACTIVE","INACTIVE","PROBATION"]} onChange={(e)=>setValues({...values, status: e.target.value})}></SelectComponent>
                             </div>
                             
                         </div>
                         <div className="inputbox Addressbox">
                                 <label>Address</label>
-                                <input type="text" name="" id="" placeholder="Flat No. /House No" value={values.houseno} onChange={(e)=>setValues({...values, houseno: e.target.value})}/>
-                                <input type="text" name="" id="" placeholder="Address Line 1" value={values.line1} onChange={(e)=>setValues({...values, line1: e.target.value})}/>
-                                <input type="text" name="" id="" placeholder="Address Line 2" value={values.line2} onChange={(e)=>setValues({...values, line2: e.target.value})}/>
-                                <input type="text" name="" id="" placeholder="Pincode" value={values.pincode} onChange={(e)=>setValues({...values, pincode: e.target.value})}/>
+                                <input type="text" name="" id="" placeholder="Flat No. /House No" value={values.address.houseNo} onChange={(e)=>setValues({...values,address: {...values.address,houseNo: e.target.value,}})}/>
+                                <input type="text" name="" id="" placeholder="Address Line 1" value={values.address.line1} onChange={(e)=>setValues({...values,address: {...values.address,line1: e.target.value,}})}/>
+                                <input type="text" name="" id="" placeholder="Address Line 2" value={values.address.line2} onChange={(e)=>setValues({...values,address: {...values.address,line2: e.target.value,}})}/>
+                                <input type="text" name="" id="" placeholder="Pincode" value={values.address.pincode} onChange={(e)=>setValues({...values,address: {...values.address,pincode: e.target.value,}})}/>
                             </div>
                         <div style={{margin:"20px"}}>
                             <div className="form_button">
@@ -150,6 +192,4 @@ dispatch(addEmployee(values))
         </>
     )
 }
-
-
 export default CreateFormSection

@@ -7,11 +7,14 @@ import { useEffect, useRef, useState } from "react"
 import useMousePostion from "../../hooks/useMousePostion"
 import { Navigate, useNavigate } from "react-router-dom"
 import useShowPassword from "../../hooks/useShowPassword"
+import { useLoginMutation } from "../../api-service/auth/login.api"
 const Login =()=>{ 
+    const [login]=useLoginMutation();
     const navigate=useNavigate()
     const mousePositon=useMousePostion();
     const[username,setUsername]=useState('')
     const [password,setPassword]=useState('')
+    const [loading,setLoading]=useState(false)
     const {toggleShowPassword,showPassword}=useShowPassword()
     const usernameRef= useRef<HTMLInputElement>(null)
     const[usernameLength,setUserNamelength]=useState("")
@@ -21,22 +24,21 @@ const Login =()=>{
                 return islogged=="true";
     }
     if(isLoggedCheck()) return <Navigate to="/employee"/>
-
-    
     const updateUsername = (newUserName: string ) => {
         setUsername(newUserName)        
     }
-    const handleLogin=(e:HTMLFormElement)=>{
+    const handleLogin=async(e:HTMLFormElement)=>{
          e.preventDefault();
-         if(username===user.username && password===user.password ){
+         setLoading(true)
+         const response=await login({email:username,password:password}).unwrap().then((res)=>{
+                localStorage.setItem("token",res.accessToken)
                 localStorage.setItem("isLoggedIn","true")
-                alert("Login Successfull")
                 navigate("/employee");
-         }
-         else{
-            alert("Wrong User Name or Password")
-         }
-        console.log("Button Clicked")
+         }).catch((err)=>{
+            console.log(err.data.message)
+            alert(err.data.message)
+         });
+        setLoading(false)
     }
     const updatePassword = (newpassword: string) => {
         setPassword(newpassword)
@@ -44,21 +46,6 @@ const Login =()=>{
     useEffect(()=>{
         usernameRef.current?.focus();
     },[])
-    // useEffect(()=>{
-    //     console.log(username)   
-    //     if(username.length==0){
-    //         setUserNamelength("")
-    //     }else if(username.length<5){
-    //         setUserNamelength("Name Should Be more than 5 letters")
-    //     }   
-    //     // else if(username.length>10){
-    //     //     setUserNamelength("Name Should be less than 10 letters")
-    //     // }
-    //     // else if(username.length<10){ 
-    //     //     setUserNamelength("Valid")
-    //     // }
-    // },[username])
-    const user={username:"admin",password:"password"}
     return(
         <>
              <main>
@@ -74,13 +61,12 @@ const Login =()=>{
                                 <InputField title="Username" type="text"  value={username} onInputChange={updateUsername} ref={usernameRef} endAdd={<button   type="button" onClick={()=>setUsername("")}>Clear</button>}></InputField>
                                 
                                 <InputField title="Password" type={showPassword ? "text" :"password"} value={password} onInputChange={updatePassword} ></InputField>  
-                                <h3 style={{float:"right"}}><input type="checkbox" name="" id="" checked={showPassword} onChange={toggleShowPassword}/>     Show Password</h3>
+                                <h3 style={{float:"right"}}><input type="checkbox" name="" id="" checked={showPassword} onChange={toggleShowPassword}/>Show Password</h3>
                                 <div>
-                                    <Button type="submit" label={"Login in"} ></Button>
+                                    <Button type="submit" label={loading ? "Loading " :"Login in"} ></Button>
                                 </div>
                         
                                 <p>{usernameLength}</p>
-                                {/* {<p> X:{mousePositon.x} Y:{mousePositon.y}</p>} */} 
                             </form>
                     </div>
                 </div>
