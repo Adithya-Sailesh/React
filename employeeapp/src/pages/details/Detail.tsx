@@ -8,7 +8,7 @@ const Details=()=>{
     const {id}=useParams();
     const data=useSelector((state)=>state)
     // const employees=EmployeeDB
-    const employees= data?.employees
+    const employees= data?.employee.employees
     console.log("emp",employees)
     const user=employees.find((emp)=>emp.employeeId==id)
     const colortab={

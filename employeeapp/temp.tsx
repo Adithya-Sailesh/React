@@ -7,7 +7,6 @@ import EmployeeDB from "../../data/EmployeeDB"
 import { useEffect, useState } from "react"
 import Store from "../../store/store"
 import { useDispatch, useSelector } from "react-redux"
-import { addEmployee } from "../../store/employee/employeeReducer"
 
 const CreateFormSection=({editEmpId}:{editEmpId:number})=>{
     const dispatch=useDispatch()
@@ -15,8 +14,8 @@ const CreateFormSection=({editEmpId}:{editEmpId:number})=>{
     const empid=useParams()
     const data=useSelector((state)=>state)
     // const employees=EmployeeDB when dummy data
-    const employees=data?.employee.employees
-    const user=employees?.find((e)=>e.employeeId==empid.id)
+    const employees=data?.employees
+    const user=employees.find((e)=>e.employeeId==empid.id)
     
     const [values,setValues]=useState({
       employeeName: "",
@@ -79,11 +78,12 @@ useEffect(() => {
 const handleSubmit = (e: React.FormEvent) => {
   e.preventDefault();
   const action={type:'employee/CREATE',payload:values}
-//   dispatch(action)
-//   alert("Data Added")
-dispatch(addEmployee(values))
+  dispatch(action)
+  alert("Data Added")
  navigate("/")
 };
+
+
     return(
         <>
         <LayoutHeading  head={editEmpId ? `Edit Employee: ${user?.employeeName}`:"Create Employee" } editEmpId={editEmpId}></LayoutHeading>
@@ -131,15 +131,14 @@ dispatch(addEmployee(values))
                             <div className="inputbox">
                                 <SelectComponent labeltext="Status" title="Choose Status" options={["ACTIVE","INACTIVE","PROBATION"]} onChange={(e)=>setValues({...values, Status: e.target.value})}></SelectComponent>
                             </div>
-                            
-                        </div>
-                        <div className="inputbox Addressbox">
+                            <div className="inputbox Addressbox">
                                 <label>Address</label>
                                 <input type="text" name="" id="" placeholder="Flat No. /House No" value={values.houseno} onChange={(e)=>setValues({...values, houseno: e.target.value})}/>
                                 <input type="text" name="" id="" placeholder="Address Line 1" value={values.line1} onChange={(e)=>setValues({...values, line1: e.target.value})}/>
                                 <input type="text" name="" id="" placeholder="Address Line 2" value={values.line2} onChange={(e)=>setValues({...values, line2: e.target.value})}/>
                                 <input type="text" name="" id="" placeholder="Pincode" value={values.pincode} onChange={(e)=>setValues({...values, pincode: e.target.value})}/>
                             </div>
+                        </div>
                         <div style={{margin:"20px"}}>
                             <div className="form_button">
                                 <Button type="submit" label="Submit" ></Button>

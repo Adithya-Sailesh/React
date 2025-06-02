@@ -10,7 +10,7 @@ import Details from './pages/details/Detail'
 import CreateFormSection from './components/createFormSection/createFormSection'
 import EmployeeList from './pages/employeeList/EmployeeList'
 import { Provider } from 'react-redux'
-import Store from './store/store'
+import store from './store/store'
 // import Login from './pages/login/Login'
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
 
   return (
    <>
-   <Provider  store={Store}>
+   <Provider  store={store}>
         <RouterProvider router={router}>
       </RouterProvider>
    </Provider>

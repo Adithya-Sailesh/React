@@ -9,14 +9,14 @@ const EmployeeList = () => {
   const navigate=useNavigate()
   // const employees=EmployeeDB
   const data=useSelector((state)=>state)
-  console.log(data)
-  const employees= data?.employees ??[{
-      employeeName: "Alice",
-      employeeId: "E001",
-      joiningDate: "2022-01-01",
-      Role: "Developer",
-      Status: "Active",
-      Experience: "2 years",
+  console.log("data",data.employee.employees)
+  const employees= data?.employee.employees ??[{
+      employeeName: "Empty",
+      employeeId: "",
+      joiningDate: "",
+      Role: "",
+      Status: "", 
+      Experience: "",
     }]
   const handleClick=(Id:string)=>{
     console.log("Clicked")
