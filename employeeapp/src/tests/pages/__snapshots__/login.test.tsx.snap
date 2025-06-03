@@ -1,0 +1,103 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Login Page > should match snapshot 1`] = `
+<div>
+  <main>
+    <div
+      class="leftcontainer"
+    >
+      <img
+        alt="Loign Page"
+        src="./src/assets/kv-login.jpeg"
+      />
+    </div>
+    <div
+      class="rightcontainer"
+    >
+      <div
+        class="rightcontainer-box"
+      >
+        <div
+          class="rightcontainer-box1"
+        >
+          <img
+            alt="Circle image"
+            src="./src/assets/kv-logo.png"
+          />
+        </div>
+        <form>
+          <div
+            class="rightcontainer-box2"
+          >
+            <label
+              class="labelleft"
+            >
+              Username
+            </label>
+            <div
+              class="rightinput"
+            >
+              <input
+                aria-label="Username"
+                name=""
+                type="text"
+                value=""
+              />
+              <span
+                class="input-addon"
+              >
+                <button
+                  type="button"
+                >
+                  Clear
+                </button>
+              </span>
+            </div>
+          </div>
+          <div
+            class="rightcontainer-box2"
+          >
+            <label
+              class="labelleft"
+            >
+              Password
+            </label>
+            <div
+              class="rightinput"
+            >
+              <input
+                aria-label="Password"
+                name=""
+                type="password"
+                value=""
+              />
+            </div>
+          </div>
+          <h3
+            style="float: right;"
+          >
+            <input
+              id=""
+              name=""
+              type="checkbox"
+            />
+            Show Password
+          </h3>
+          <div>
+            <div>
+              <button
+                aria-label="Login in"
+                class="Buttondesign"
+                type="submit"
+              >
+                Login in
+              </button>
+            </div>
+          </div>
+          <p />
+        </form>
+      </div>
+    </div>
+  </main>
+</div>
+`;

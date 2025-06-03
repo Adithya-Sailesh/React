@@ -12,8 +12,10 @@ const Layout =()=>{
     if (!isLoggedCheck()) return <Navigate to='/' />    
     return(
         <>
-        <main >  
+        <main ><div className="sidebar-container">
             <SideBar></SideBar>
+            </div>  
+            
             <div className="right-side">
                 <section className="sec1"> </section>
                 <section className="sec3">
@@ -27,22 +29,3 @@ const Layout =()=>{
 export default Layout
 
 
-
-
-// import React from "react";
-// import "./layout.css";
-
-
-// const Layout = ({ children }: { children: React.ReactNode }) => {
-//   return (
-//     <>
-//       <body className="layout-body">
-//         <SideBar></SideBar>
-//         <main className="layout-main">{children}</main>
-//       </body>
-//     </>
-//   );
-// };
-
-
-// export default Layout

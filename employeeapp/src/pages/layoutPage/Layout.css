@@ -41,6 +41,16 @@ aside nav li{
 /* li:hover{
     border: 2px solid grey;
 } */
+
+.sidebar-container{
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .sidebar-container {
+        display: none;
+    }
+}
 .right-side{
     width: calc(100% - 300px);
     background-color:#FAFAFA;
@@ -60,6 +70,7 @@ aside nav li{
 
     /* background-color: red; */
     margin: 10px;
+    min-width: fit-content;
     /* padding: 20px; */
     /* box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1); */
 }

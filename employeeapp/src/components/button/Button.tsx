@@ -3,7 +3,7 @@ const Button =({label,type}:{label:string,type:"submit"|"reset"|"button"})=>{
     
     return(
         <div>
-        <button type={type} className="Buttondesign" >{label}</button>
+        <button type={type} className="Buttondesign" aria-label={label} >{label}</button>
         </div>
     )
 }

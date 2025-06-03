@@ -27,15 +27,14 @@ const Login =()=>{
     const updateUsername = (newUserName: string ) => {
         setUsername(newUserName)        
     }
-    const handleLogin=async(e:HTMLFormElement)=>{
+    const handleLogin=async(e)=>{
          e.preventDefault();
          setLoading(true)
-         const response=await login({email:username,password:password}).unwrap().then((res)=>{
+         await login({email:username,password:password}).unwrap().then((res)=>{
                 localStorage.setItem("token",res.accessToken)
                 localStorage.setItem("isLoggedIn","true")
                 navigate("/employee");
          }).catch((err)=>{
-            console.log(err.data.message)
             alert(err.data.message)
          });
         setLoading(false)
@@ -46,6 +45,12 @@ const Login =()=>{
     useEffect(()=>{
         usernameRef.current?.focus();
     },[])
+    // const isLoggedCheck=()=>{
+    //             const islogged=localStorage.getItem("isLoggedIn")
+    //             console.log("In side layout",islogged)
+    //             return islogged=="true";
+    // }
+    // if(isLoggedCheck()) return <Navigate to="/employee"/>
     return(
         <>
              <main>
@@ -59,8 +64,7 @@ const Login =()=>{
                             </div>
                             <form onSubmit={handleLogin}>  
                                 <InputField title="Username" type="text"  value={username} onInputChange={updateUsername} ref={usernameRef} endAdd={<button   type="button" onClick={()=>setUsername("")}>Clear</button>}></InputField>
-                                
-                                <InputField title="Password" type={showPassword ? "text" :"password"} value={password} onInputChange={updatePassword} ></InputField>  
+                                <InputField  title="Password" type={showPassword ? "text" :"password"} value={password} onInputChange={updatePassword} ></InputField>  
                                 <h3 style={{float:"right"}}><input type="checkbox" name="" id="" checked={showPassword} onChange={toggleShowPassword}/>Show Password</h3>
                                 <div>
                                     <Button type="submit" label={loading ? "Loading " :"Login in"} ></Button>

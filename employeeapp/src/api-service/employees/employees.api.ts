@@ -1,7 +1,6 @@
 
   import baseApi from "../api";
     import type { deleteResponse, editResponse, employeeResponse, empRequest, empResponse } from "./types";
-    // import type { LoginPayload, LoginResponse } from "./types";
     export const employeeApi = baseApi.injectEndpoints({
       endpoints: (builder) => ({
         getEmployeeList: builder.query({
