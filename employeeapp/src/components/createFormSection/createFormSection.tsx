@@ -109,8 +109,8 @@ const payload = {
     }
     // navigate("/");
   } catch (error) {
-    console.error("Error:", error);
-    alert("Something went wrong");
+    console.error("Error:", error.data.message);
+    alert(error.data.message);
   }
    navigate("/")
   }
@@ -159,7 +159,7 @@ const payload = {
                                 <SelectComponent value={values.department} labeltext="Department" title="Choose Department" options={["1","2","3","4","5","6"] } onChange={(e:any)=>setValues({...values, department: e.target.value})} ></SelectComponent>
                             </div> 
                             <div className="inputbox">
-                                <SelectComponent value={values.role} labeltext="role" title="Choose role" options={["DEV","HR","UI","UX"]} onChange={(e:any)=>setValues({...values, role: e.target.value})}></SelectComponent>
+                                <SelectComponent value={values.role} labeltext="role" title="Choose role" options={["DEVELOPER","HR","UI","UX"]} onChange={(e:any)=>setValues({...values, role: e.target.value})}></SelectComponent>
                             </div>  
                             <div className="inputbox">
                                 <SelectComponent  value={values.status} labeltext="status" title="Choose status" options={["ACTIVE","INACTIVE","PROBATION"]} onChange={(e:any)=>setValues({...values, status: e.target.value})}></SelectComponent>

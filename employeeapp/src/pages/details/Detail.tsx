@@ -16,6 +16,7 @@ const Details=()=>{
     // console.log("emp",employees)
     // const user=response?.find((emp:any)=>emp.employeeid==id)
     const user=singleEmployeeData
+    console.log("user",user)
     const colortab={
         "ACTIVE":"#D3F4BE",
         "INACTIVE":"#FFBFBF",
@@ -37,6 +38,10 @@ const Details=()=>{
                             <div className="individual">
                                 <h3>Experience</h3>
                                 <h5>{user?.experience}</h5>
+                            </div>
+                            <div className="individual">
+                                <h3>Department Number</h3>
+                                <h5>{user?.department? user?.department?.id : " NaN"}</h5>
                             </div>
                             <div className="individual">
                                 <h3>Role</h3>

@@ -53,11 +53,11 @@ const ListBlock=({data}:{data:any})=>{
             <li>{data.role}</li>
             <li  className="statusBg"  style={{backgroundColor:colortab[data.status.toUpperCase()]}}>{data.status}</li>
             <li>{data.experience}</li>
-            <li><FaTrash onClick={(e)=>{
+            <li><FaTrash size={25} onClick={(e)=>{
                     handleDelete()
                     e.stopPropagation()
             }   
-                } color="#FA4242"/><MdOutlineEdit onClick={(e)=>{
+                } color="#FA4242"/><MdOutlineEdit size={25} onClick={(e)=>{
                 handleEdit(data.id)
                 e.stopPropagation()
                 }} /></li>
