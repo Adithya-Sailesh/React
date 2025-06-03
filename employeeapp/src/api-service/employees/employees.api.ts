@@ -1,6 +1,6 @@
 
   import baseApi from "../api";
-    import type { employeeResponse, empRequest, empResponse } from "./types";
+    import type { deleteResponse, editResponse, employeeResponse, empRequest, empResponse } from "./types";
     // import type { LoginPayload, LoginResponse } from "./types";
     export const employeeApi = baseApi.injectEndpoints({
       endpoints: (builder) => ({
@@ -20,7 +20,7 @@
           }),
           invalidatesTags: ['EMPLOYEES'],
         }),
-        editemployee:builder.mutation<void,{id:number,payload:empRequest}>({
+        editemployee:builder.mutation<editResponse,{id:number,payload:empRequest}>({
           query:({payload,id})=>({
             url:`/employee/${id}`,
             method :"PUT",
@@ -28,11 +28,12 @@
           }),
           invalidatesTags: ['EMPLOYEES', 'EMPLOYEE_DETAILS']
         }),
-        deleteemployee:builder.mutation<empResponse,{id:number}>({
+        deleteemployee:builder.mutation<deleteResponse,{id:number}>({
           query:({id})=>({
             url:`/employee/${id}`,
             method :"DELETE"
-          })
+          }),
+          invalidatesTags: ['EMPLOYEES', 'EMPLOYEE_DETAILS']
         })
     }),
   });

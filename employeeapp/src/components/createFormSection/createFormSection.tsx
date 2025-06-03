@@ -3,11 +3,7 @@ import Button from "../button/Button"
 import LayoutHeading from "../layoutHeading/LayoutHeading"
 import SelectComponent from "../selectComponent/SelectComponent"
 import  "./createFormSection.css"
-import EmployeeDB from "../../data/EmployeeDB"
 import { useEffect, useState } from "react"
-import Store from "../../store/store"
-import { useDispatch, useSelector } from "react-redux"
-import { addEmployee } from "../../store/employee/employeeReducer"
 import { useCreateemployeeMutation, useEditemployeeMutation, useGetEmployeeListQuery } from "../../api-service/employees/employees.api"
 
 const CreateFormSection=({editEmpId}:{editEmpId:number})=>{
@@ -18,7 +14,7 @@ const CreateFormSection=({editEmpId}:{editEmpId:number})=>{
     const cond=Number(empid.id)
     const {data:getAll}=useGetEmployeeListQuery({})
     console.log("Employeefrom",getAll)
-    const user=getAll?.find((e)=>e.id==cond)
+    const user=getAll?.find((e:any)=>e.id==cond)
     console.log("user",user)
     const [values,setValues]=useState({
         name: "",
@@ -51,8 +47,7 @@ useEffect(() => {
             age: user.age || "",
             employeePassword: "",
             employeeId: user.employeeid,
-            // joiningDate: user.joiningDate,
-            department:String(user.department.id|| ""),  
+            department:String(user?.department?.id|| ""),  
             role: user.role,
             status: user.status,
             experience: user.experience,
@@ -62,7 +57,6 @@ useEffect(() => {
                 houseNo:user?.address.houseNo || "",
                 pincode:user?.address.pincode|| ""
                 }
-            
             });
         }
         else {
@@ -90,8 +84,6 @@ useEffect(() => {
 
 const handleSubmit = async(e: React.FormEvent) => {
   e.preventDefault();
-  console.log("pass",values.employeePassword,user.password)
-//   password:values.employeePassword
 const payload = {
     name: values.name,
     email: values.email,
@@ -104,8 +96,7 @@ const payload = {
     experience: Number(values.experience),
     status: values.status,
     address: values.address,
-   
-  };
+};
 
   
    try {
@@ -116,7 +107,7 @@ const payload = {
       await createEmployee(payload).unwrap();
       alert("Employee created successfully");
     }
-    navigate("/");
+    // navigate("/");
   } catch (error) {
     console.error("Error:", error);
     alert("Something went wrong");
@@ -165,13 +156,13 @@ const payload = {
                                 <input type="text" name="" id="" placeholder="Years" value={values.experience} onChange={(e)=>setValues({...values, experience: e.target.value})} required/>
                             </div>
                             <div className="inputbox">
-                                <SelectComponent value={values.department} labeltext="Department" title="Choose Department" options={["1","2","3","4","5","6"] } onChange={(e)=>setValues({...values, department: e.target.value})} ></SelectComponent>
+                                <SelectComponent value={values.department} labeltext="Department" title="Choose Department" options={["1","2","3","4","5","6"] } onChange={(e:any)=>setValues({...values, department: e.target.value})} ></SelectComponent>
                             </div> 
                             <div className="inputbox">
-                                <SelectComponent value={values.role} labeltext="role" title="Choose role" options={["DEV","HR","UI","UX"]} onChange={(e)=>setValues({...values, role: e.target.value})}></SelectComponent>
+                                <SelectComponent value={values.role} labeltext="role" title="Choose role" options={["DEV","HR","UI","UX"]} onChange={(e:any)=>setValues({...values, role: e.target.value})}></SelectComponent>
                             </div>  
                             <div className="inputbox">
-                                <SelectComponent  value={values.status} labeltext="status" title="Choose status" options={["ACTIVE","INACTIVE","PROBATION"]} onChange={(e)=>setValues({...values, status: e.target.value})}></SelectComponent>
+                                <SelectComponent  value={values.status} labeltext="status" title="Choose status" options={["ACTIVE","INACTIVE","PROBATION"]} onChange={(e:any)=>setValues({...values, status: e.target.value})}></SelectComponent>
                             </div>
                             
                         </div>

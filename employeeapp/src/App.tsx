@@ -11,13 +11,8 @@ import CreateFormSection from './components/createFormSection/createFormSection'
 import EmployeeList from './pages/employeeList/EmployeeList'
 import { Provider } from 'react-redux'
 import store from './store/store'
-// import Login from './pages/login/Login'
-
 function App() {
-  
   const router=createBrowserRouter([{
-
-    
     path:"/",
     element:<Login/>
   },{
@@ -25,7 +20,7 @@ function App() {
     element:<Layout/>,  
 
     children:[
-      // {index:true,element}
+
       {path:"",element:<EmployeeList></EmployeeList>},
       {path:"create" ,element:<CreateFormSection editEmpId={0}></CreateFormSection>},
       {path:"edit/:id",element:<CreateFormSection editEmpId={4}/>},

@@ -13,14 +13,13 @@
 }
 .popupoverlay{
     height: 400px;
-    width: 300px;
+    width: 500px;
     background-color: #FDFDFD;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
-    border-radius: 10px;
+    border-radius: 20px;
 }
 .popuptab h1{
     color: black;
@@ -29,6 +28,7 @@
     height: 100%;
     width: 100%;
     background-color: #FDFDFD;
+    border-radius: 20px;
     display: flex;
     flex-direction: column;
 }

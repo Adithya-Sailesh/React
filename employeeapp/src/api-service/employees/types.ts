@@ -5,7 +5,12 @@ export type empResponse={
 export type employeeResponse={
 
 }
+export type editResponse={
 
+}
+export type deleteResponse={
+
+}
 export type empRequest={
          
     name:string,
@@ -13,7 +18,7 @@ export type empRequest={
     age:number,
     role:string,
     dept_id:number,
-    password:string,
+    password?:string,
     employeeId:string,
     dateOfJoining:string,
     experience:number,
