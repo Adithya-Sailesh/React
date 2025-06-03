@@ -5,10 +5,17 @@ import SelectComponent from "../selectComponent/SelectComponent"
 import  "./createFormSection.css"
 import { useEffect, useState } from "react"
 import { useCreateemployeeMutation, useEditemployeeMutation, useGetEmployeeListQuery } from "../../api-service/employees/employees.api"
+import { useGetDepartmentListQuery } from "../../api-service/department/department.api"
 
 const CreateFormSection=({editEmpId}:{editEmpId:number})=>{
     const [createEmployee]=useCreateemployeeMutation()
     const [editEmployee]=useEditemployeeMutation()
+    const dept=useGetDepartmentListQuery({})
+
+    const  deptList=dept.data
+   
+    const deptarray=deptList?.map((obj:any)=>{return obj.id})
+
     const navigate=useNavigate()
     const empid=useParams()
     const cond=Number(empid.id)
@@ -156,7 +163,7 @@ const payload = {
                                 <input type="text" name="" id="" placeholder="Years" value={values.experience} onChange={(e)=>setValues({...values, experience: e.target.value})} required/>
                             </div>
                             <div className="inputbox">
-                                <SelectComponent value={values.department} labeltext="Department" title="Choose Department" options={["1","2","3","4","5","6"] } onChange={(e:any)=>setValues({...values, department: e.target.value})} ></SelectComponent>
+                                <SelectComponent value={values.department} labeltext="Department" title="Choose Department" options={deptarray ?? [1,2]} onChange={(e:any)=>setValues({...values, department: e.target.value})} ></SelectComponent>
                             </div> 
                             <div className="inputbox">
                                 <SelectComponent value={values.role} labeltext="role" title="Choose role" options={["DEVELOPER","HR","UI","UX"]} onChange={(e:any)=>setValues({...values, role: e.target.value})}></SelectComponent>

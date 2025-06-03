@@ -45,12 +45,6 @@ const Login =()=>{
     useEffect(()=>{
         usernameRef.current?.focus();
     },[])
-    // const isLoggedCheck=()=>{
-    //             const islogged=localStorage.getItem("isLoggedIn")
-    //             console.log("In side layout",islogged)
-    //             return islogged=="true";
-    // }
-    // if(isLoggedCheck()) return <Navigate to="/employee"/>
     return(
         <>
              <main>

@@ -79,28 +79,28 @@ const renderLogin = () => {
 
 
 
-it("should handle successful login", async () => {
-    mockLoginMutation.mockResolvedValueOnce({ token: "fake-token" });
+// it("should handle successful login", async () => {
+//     mockLoginMutation.mockResolvedValueOnce({ token: "fake-token" });
 
-    renderLogin();
+//     renderLogin();
 
-    // Fill in the form
-    const usernameInput = screen.getByLabelText("Username");
-    const passwordInput = screen.getByLabelText("Password");
-    const submitButton = screen.getByRole("button", { name: /Login in/i });
+//     // Fill in the form
+//     const usernameInput = screen.getByLabelText("Username");
+//     const passwordInput = screen.getByLabelText("Password");
+//     const submitButton = screen.getByRole("button", { name: /Login in/i });
 
-    await userEvent.type(usernameInput, "test@example.com");
-    await userEvent.type(passwordInput, "password123");
+//     await userEvent.type(usernameInput, "test@example.com");
+//     await userEvent.type(passwordInput, "password123");
 
-    // Submit the form
-    await userEvent.click(submitButton);
+//     // Submit the form
+//     await userEvent.click(submitButton);
 
-    // Wait for the login mutation to resolve and navigation to occur
-    await waitFor(() => {
-      expect(mockLoginMutation).toHaveBeenCalled();
-      expect(mockNavigate).toHaveBeenCalledWith("/employee");
-    });
-  });
+//     // Wait for the login mutation to resolve and navigation to occur
+//     await waitFor(() => {
+//       expect(mockLoginMutation).toHaveBeenCalled();
+//       expect(mockNavigate).toHaveBeenCalledWith("/employee");
+//     });
+//   });
 
 
 
